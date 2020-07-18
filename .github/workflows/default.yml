@@ -1,0 +1,31 @@
+name: Docker Push
+
+on:
+  - push
+  - schedule:
+      - cron: '0 0 * * *' # Once per day at midnight
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      
+       - name: Git Checkout
+         uses: actions/checkout@v2
+         
+       - name: Docker Push DockerHub
+         uses: docker/build-push-action@v1
+         with:
+           username: ${{ secrets.DH_USERNAME }}
+           password: ${{ secrets.DH_PASSWORD }}
+           repository: mattbanner/jenkins-dind
+           tags: latest
+
+       - name: Docker Push GitHub
+         uses: docker/build-push-action@v1
+         with:
+           username: ${{ secrets.GH_USERNAME }}
+           password: ${{ secrets.GH_PASSWORD }}
+           registry: docker.pkg.github.com
+           repository: mattsbanner/docker-jenkins-dind/jenkins-dind
+           tags: latest
