@@ -9,7 +9,7 @@ on:
       - v*
   repository_dispatch:
       types: 
-        - api
+        - Rebuild
 
 env:
   IMAGE_NAME: jenkins-dind
