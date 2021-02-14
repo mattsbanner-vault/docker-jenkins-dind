@@ -7,6 +7,9 @@ on:
       - develop
     tags:
       - v*
+  repository_dispatch:
+      types: 
+        - null
 
 env:
   IMAGE_NAME: jenkins-dind
