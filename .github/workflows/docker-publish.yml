@@ -9,7 +9,7 @@ on:
       - v*
   repository_dispatch:
       types: 
-        - null
+        - api
 
 env:
   IMAGE_NAME: jenkins-dind
